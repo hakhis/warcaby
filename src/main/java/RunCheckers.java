@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class RunCheckers extends Application {
-    private final Image imageback = new Image("file:resources/checkers_board.png");
+    private final Image imageback = new Image("file:resources/board.png");
 
     public static void main(String[] args) {
         launch(args);
