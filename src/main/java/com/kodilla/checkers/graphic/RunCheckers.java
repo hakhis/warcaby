@@ -1,13 +1,12 @@
-package com.bartek.checkers;
+package com.kodilla.checkers.graphic;
 
-import com.bartek.checkers.logic.Board;
+import com.kodilla.checkers.logic.Board;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;

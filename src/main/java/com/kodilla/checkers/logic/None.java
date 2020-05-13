@@ -1,4 +1,4 @@
-package com.bartek.checkers.logic;
+package com.kodilla.checkers.logic;
 
 import javafx.scene.image.Image;
 

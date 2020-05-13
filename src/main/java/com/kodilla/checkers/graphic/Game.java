@@ -1,8 +1,8 @@
-package com.bartek.checkers;
+package com.kodilla.checkers.graphic;
 
-import com.bartek.checkers.logic.Board;
-import com.bartek.checkers.logic.Figure;
-import com.bartek.checkers.logic.None;
+import com.kodilla.checkers.logic.Board;
+import com.kodilla.checkers.logic.Figure;
+import com.kodilla.checkers.logic.None;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 

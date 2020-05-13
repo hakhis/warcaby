@@ -1,4 +1,4 @@
-package com.bartek.checkers.logic;
+package com.kodilla.checkers.logic;
 
 import java.util.ArrayList;
 import java.util.List;

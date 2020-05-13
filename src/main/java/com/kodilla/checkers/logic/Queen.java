@@ -1,4 +1,4 @@
-package com.bartek.checkers.logic;
+package com.kodilla.checkers.logic;
 
 import javafx.scene.image.Image;
 
@@ -18,7 +18,10 @@ public class Queen implements Figure {
 
     @Override
     public Image getImage() {
-        //todo:zwrócić obraz w zależosci od koloru
-        return null;
+        if (color == FigureColor.BLACK) return blackQueen;
+        else return whiteQueen;
+        /*if (color == FigureColor.BLACK) return blackQueen;
+        else if (color == FigureColor.WHITE) return whiteQueen;
+        else return null;*/
     }
 }

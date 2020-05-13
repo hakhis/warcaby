@@ -1,4 +1,4 @@
-package com.bartek.checkers.logic;
+package com.kodilla.checkers.logic;
 
 import javafx.scene.image.Image;
 
@@ -19,7 +19,10 @@ public class Pawn implements Figure{
 
     @Override
     public Image getImage() {
-        //
-        return null;
+        if (color == FigureColor.BLACK) return blackPawn;
+        else return whitePawn;
+        /*if (color == FigureColor.BLACK) return blackPawn;
+        else if (color == FigureColor.WHITE) return whitePawn;
+        else return null;*/
     }
 }
