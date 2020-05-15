@@ -12,4 +12,10 @@ public class None implements Figure {
     public Image getImage() {
         return null;
     }
+
+    @Override
+    public boolean isClicked() {return false;}
+
+    @Override
+    public void setClicked() {}
 }

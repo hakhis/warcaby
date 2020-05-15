@@ -23,10 +23,16 @@ public class RunCheckers extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true,
-                                                true, true, false);
+        BackgroundSize backgroundSize = new BackgroundSize(
+                100,
+                100,
+                true,
+                true,
+                true,
+                false);
         BackgroundImage backgroundImage = new BackgroundImage(
-                board, BackgroundRepeat.NO_REPEAT,
+                board,
+                BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);

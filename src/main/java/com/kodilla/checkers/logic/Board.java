@@ -20,57 +20,98 @@ public class Board {
     }
 
     public void init() {
-        //black row 0
-        /*for (int nrow = 0; nrow < 2; nrow++) {
+        //black rows
+        for (int nrow = 0; nrow < 2; nrow++) {
             for (int ncol = 0; ncol < 8; ncol++) {
                 setFigure(ncol, nrow, new Pawn(FigureColor.BLACK));
             }
-        }*/
-        setFigure(0, 0, new Pawn(FigureColor.BLACK));
-        setFigure(1, 0, new Pawn(FigureColor.BLACK));
-        setFigure(2, 0, new Pawn(FigureColor.BLACK));
-        setFigure(3, 0, new Pawn(FigureColor.BLACK));
-        setFigure(4, 0, new Pawn(FigureColor.BLACK));
-        setFigure(5, 0, new Pawn(FigureColor.BLACK));
-        setFigure(6, 0, new Pawn(FigureColor.BLACK));
-        setFigure(7, 0, new Pawn(FigureColor.BLACK));
-        //black row 1
-        setFigure(0, 1, new Pawn(FigureColor.BLACK));
-        setFigure(1, 1, new Pawn(FigureColor.BLACK));
-        setFigure(2, 1, new Pawn(FigureColor.BLACK));
-        setFigure(3, 1, new Pawn(FigureColor.BLACK));
-        setFigure(4, 1, new Pawn(FigureColor.BLACK));
-        setFigure(5, 1, new Pawn(FigureColor.BLACK));
-        setFigure(6, 1, new Pawn(FigureColor.BLACK));
-        setFigure(7, 1, new Pawn(FigureColor.BLACK));
-        //white row 6
-        /*for (int nrow = 6; nrow < 8; nrow++) {
+        }
+        //white rows
+        for (int nrow = 6; nrow < 8; nrow++) {
             for (int ncol = 0; ncol < 8; ncol++) {
                 setFigure(ncol, nrow, new Pawn(FigureColor.WHITE));
             }
-        }*/
-        setFigure(0, 6, new Pawn(FigureColor.WHITE));
-        setFigure(1, 6, new Pawn(FigureColor.WHITE));
-        setFigure(2, 6, new Pawn(FigureColor.WHITE));
-        setFigure(3, 6, new Pawn(FigureColor.WHITE));
-        setFigure(4, 6, new Pawn(FigureColor.WHITE));
-        setFigure(5, 6, new Pawn(FigureColor.WHITE));
-        setFigure(6, 6, new Pawn(FigureColor.WHITE));
-        setFigure(7, 6, new Pawn(FigureColor.WHITE));
-        //white row 7
-        setFigure(0, 7, new Pawn(FigureColor.WHITE));
-        setFigure(1, 7, new Pawn(FigureColor.WHITE));
-        setFigure(2, 7, new Pawn(FigureColor.WHITE));
-        setFigure(3, 7, new Pawn(FigureColor.WHITE));
-        setFigure(4, 7, new Pawn(FigureColor.WHITE));
-        setFigure(5, 7, new Pawn(FigureColor.WHITE));
-        setFigure(6, 7, new Pawn(FigureColor.WHITE));
-        setFigure(7, 7, new Pawn(FigureColor.WHITE));
+        }
         //empty board
         /*for (int nrow = 2; nrow < 6; nrow++) {
             for (int ncol = 0; ncol < 8; ncol++) {
                 setFigure(ncol, nrow, new None());
             }
         }*/
+    }
+
+    public boolean move(int oldX, int oldY, int x, int y) {
+        boolean result = isCommonMoveValid(oldX, oldY, x, y);
+        result = result && inNormalMoveValid(oldX, oldY, x, y);
+        Figure figure = getFigure(oldX, oldY);
+        if (result) {
+            setFigure(x, y, figure);
+            setFigure(oldX, oldY, new None());
+        } else {
+            result = isMoveWithHitValid(oldX, oldY, x, y);
+            if (result) {
+                setFigure(x, y, figure);
+                setFigure(oldX, oldY, new None());
+                removeFigureBefore(oldX, oldY, x, y);
+            }
+        }
+        return result;
+    }
+
+    private void removeFigureBefore(int oldX, int oldY, int x, int y) {
+        //todo usuniecie poprzedniej figury
+    }
+
+    private boolean isMoveWithHitValid(int oldX, int oldY, int x, int y) {
+        //todo sprawdzenie bicia
+        return false;
+    }
+
+    private boolean inNormalMoveValid(int oldX, int oldY, int x, int y) {
+        Figure figure = getFigure(oldX, oldY);
+        if (figure instanceof Pawn) {
+            return isPawnMoveProper(oldX, x);
+        } else {
+            return isQueenMoveProper(oldX, oldY, x, y);
+        }
+    }
+
+    private boolean isCommonMoveValid(int oldX, int oldY, int x, int y) {
+        boolean result = true;
+        result = result && emptyTargetField(x, y);
+        result = result && goodDirection(oldX, oldY, y);
+        result = result && isMoveDiagonal(oldX, oldY, x, y);
+        return result;
+    }
+
+    private boolean isQueenMoveProper(int oldX, int oldY, int x, int y) {
+        boolean result = true;
+        int dY = (y > oldY) ? 1 : -1;
+        int dX = (x > oldX) ? 1 : -1;
+        int currX = oldX;
+
+        for (int currY = oldY + dY; currY != y; currY+=dY) {
+            currX += dX;
+            result = result && (getFigure(currX, currY) instanceof None);
+        }
+
+        return result;
+    }
+
+    private boolean isPawnMoveProper(int oldX, int x) {
+        return Math.abs(oldX - x) == 1;
+    }
+
+    private boolean emptyTargetField(int x, int y) {
+        return getFigure(x, y) instanceof None;
+    }
+
+    private boolean isMoveDiagonal(int oldX, int oldY, int x, int y) {
+        return Math.abs(oldX - x) == Math.abs(oldY - y);
+    }
+
+    private boolean goodDirection(int oldX, int oldY, int y) {
+        Figure figure = getFigure(oldX, oldY);
+        return (figure instanceof Queen) || (figure.getColor() == FigureColor.WHITE) ? y < oldY : y > oldY;
     }
 }
