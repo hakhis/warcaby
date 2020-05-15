@@ -21,6 +21,11 @@ public class Board {
 
     public void init() {
         //black row 0
+        /*for (int nrow = 0; nrow < 2; nrow++) {
+            for (int ncol = 0; ncol < 8; ncol++) {
+                setFigure(ncol, nrow, new Pawn(FigureColor.BLACK));
+            }
+        }*/
         setFigure(0, 0, new Pawn(FigureColor.BLACK));
         setFigure(1, 0, new Pawn(FigureColor.BLACK));
         setFigure(2, 0, new Pawn(FigureColor.BLACK));
@@ -39,6 +44,11 @@ public class Board {
         setFigure(6, 1, new Pawn(FigureColor.BLACK));
         setFigure(7, 1, new Pawn(FigureColor.BLACK));
         //white row 6
+        /*for (int nrow = 6; nrow < 8; nrow++) {
+            for (int ncol = 0; ncol < 8; ncol++) {
+                setFigure(ncol, nrow, new Pawn(FigureColor.WHITE));
+            }
+        }*/
         setFigure(0, 6, new Pawn(FigureColor.WHITE));
         setFigure(1, 6, new Pawn(FigureColor.WHITE));
         setFigure(2, 6, new Pawn(FigureColor.WHITE));
@@ -56,5 +66,11 @@ public class Board {
         setFigure(5, 7, new Pawn(FigureColor.WHITE));
         setFigure(6, 7, new Pawn(FigureColor.WHITE));
         setFigure(7, 7, new Pawn(FigureColor.WHITE));
+        //empty board
+        /*for (int nrow = 2; nrow < 6; nrow++) {
+            for (int ncol = 0; ncol < 8; ncol++) {
+                setFigure(ncol, nrow, new None());
+            }
+        }*/
     }
 }

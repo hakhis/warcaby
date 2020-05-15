@@ -4,7 +4,9 @@ import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Figure;
 import com.kodilla.checkers.logic.None;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 
 
 public class Game {
@@ -18,6 +20,7 @@ public class Game {
 
     public void display() {
         grid.getChildren().clear();
+        //setting pawns images
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 Figure figure = board.getFigure(col, row);
@@ -30,6 +33,7 @@ public class Game {
     }
 
     public void doClick(int x, int y) {
+        System.out.println("column: " + x + ", row " + y);
         //todo: skonsultowac z mentorem po zrobiniu poprzednich todo
     }
 }
