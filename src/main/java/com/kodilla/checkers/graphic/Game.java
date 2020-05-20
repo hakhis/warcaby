@@ -4,7 +4,6 @@ import com.kodilla.checkers.logic.Board;
 import com.kodilla.checkers.logic.Figure;
 import com.kodilla.checkers.logic.FigureColor;
 import com.kodilla.checkers.logic.None;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 

@@ -63,8 +63,13 @@ public class Board {
     }
 
     private boolean isMoveWithHitValid(int oldX, int oldY, int x, int y) {
+        boolean result = true;
+        Figure figure = getFigure(oldX, oldY);
+        result = result && (goodDirection(oldX, oldY, y) || figure instanceof Queen);
+        result = result && emptyTargetField(x, y);
+        result = result && Math.abs(oldX - x) == 2;
         //todo sprawdzenie bicia
-        return false;
+        return result;
     }
 
     private boolean inNormalMoveValid(int oldX, int oldY, int x, int y) {
