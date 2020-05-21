@@ -12,6 +12,7 @@ public class Queen implements Figure {
 
     public Queen(FigureColor color) {
         this.color = color;
+        clicked = false;
     }
 
     @Override
@@ -21,17 +22,20 @@ public class Queen implements Figure {
 
     @Override
     public Image getImage() {
-        if (color == FigureColor.BLACK) return blackQueen;
-        else return whiteQueen;
-        /*if (color == FigureColor.BLACK) return blackQueen;
-        else if (color == FigureColor.WHITE) return whiteQueen;
-        else return null;*/
+        if (clicked) {
+            return highLight;
+        } else if (color == FigureColor.BLACK) {
+            return blackQueen;
+        } else {
+            return whiteQueen;
+        }
     }
 
     @Override
     public boolean isClicked() {
         return clicked;
     }
+
     @Override
     public void setClicked() {
         if (clicked) clicked = false;

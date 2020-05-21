@@ -11,7 +11,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class RunCheckers extends Application {
-    private Image board = new Image("board.png");
+    private Image board = new Image("board2.png");
 
 
     private FlowPane pawns = new FlowPane(Orientation.HORIZONTAL);
@@ -40,7 +40,8 @@ public class RunCheckers extends Application {
         GridPane grid = new GridPane();
         grid.setGridLinesVisible(true);
         grid.setAlignment(Pos.CENTER);
-        grid.setPadding(new Insets(58, 58, 58, 58));
+        //grid.setPadding(new Insets(58, 58, 58, 58));
+        grid.setPadding(new Insets(0, 0, 0, 0));
         grid.setHgap(20);
         grid.setVgap(20);
         grid.setBackground(background);
@@ -51,13 +52,16 @@ public class RunCheckers extends Application {
             grid.getRowConstraints().add(rowConst);
             grid.getColumnConstraints().add(colConst);
         }
-        Scene scene = new Scene(grid, 1076, 1076);
+        //Scene scene = new Scene(grid, 1076, 1076);
+        Scene scene = new Scene(grid, 960, 960);
 
         stage.setTitle("Checkers");
         stage.setScene(scene);
         stage.sizeToScene();
         Board board = new Board();
-        board.init();
+        //board.init();
+        //board.setTest();
+        board.setClassic();
         Game game = new Game(board, grid);
         game.display();
         grid.setOnMouseClicked(e -> {
@@ -65,7 +69,8 @@ public class RunCheckers extends Application {
             double y = e.getY();
             int row = 100;  //temp 100 if outside the board
             int col = 100;  //temp 100 if outside the board
-            int boardCorner = 58;
+            //int boardCorner = 58;
+            int boardCorner = 0;
             int fieldWidth = 120;
             System.out.println("x=" + x + ", y=" + y);
             //columns

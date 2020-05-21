@@ -22,12 +22,13 @@ public class Pawn implements Figure{
 
     @Override
     public Image getImage() {
-        if (clicked) return highLight; else
-        if (color == FigureColor.BLACK) return blackPawn;
-        else return whitePawn;
-        /*if (color == FigureColor.BLACK) return blackPawn;
-        else if (color == FigureColor.WHITE) return whitePawn;
-        else return null;*/
+        if (clicked) {
+            return highLight;
+        } else if (color == FigureColor.BLACK) {
+            return blackPawn;
+        } else {
+            return whitePawn;
+        }
     }
     @Override
     public boolean isClicked() {
