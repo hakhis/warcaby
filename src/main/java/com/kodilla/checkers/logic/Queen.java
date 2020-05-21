@@ -5,7 +5,8 @@ import javafx.scene.image.Image;
 public class Queen implements Figure {
     private Image whiteQueen = new Image("whitequeen.png");
     private Image blackQueen = new Image("blackqueen.png");
-    private Image highLight = new Image("highlighted_placeholder.png");
+    private Image highLightWhiteQueen = new Image("highlightedWhiteQueen.png");
+    private Image highLightBlackQueen = new Image("highlightedBlackQueen.png");
 
     private FigureColor color;
     private boolean clicked;
@@ -22,12 +23,14 @@ public class Queen implements Figure {
 
     @Override
     public Image getImage() {
-        if (clicked) {
-            return highLight;
-        } else if (color == FigureColor.BLACK) {
-            return blackQueen;
-        } else {
+        if (clicked && color == FigureColor.BLACK) {
+            return highLightBlackQueen;
+        } else if (clicked && color == FigureColor.WHITE) {
+            return highLightWhiteQueen;
+        } else if (!clicked && color == FigureColor.WHITE) {
             return whiteQueen;
+        } else {
+            return blackQueen;
         }
     }
 

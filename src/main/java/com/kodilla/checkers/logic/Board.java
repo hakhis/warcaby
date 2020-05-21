@@ -81,29 +81,25 @@ public class Board {
         boolean result = inNormalMoveValid(oldX, oldY, x, y);
         Figure figure = getFigure(oldX, oldY);
         if (result) {
-            if (canBeQueen(y, figure)) {
-                setFigure(x, y, new Queen(figure.getColor()));
-                getFigure(x, y).setClicked();
-                setFigure(oldX, oldY, new None());
-            } else {
-                setFigure(x, y, figure);
-                setFigure(oldX, oldY, new None());
-            }
+            makeQueen(oldX, oldY, x, y, figure);
         } else {
             result = isMoveWithHitValid(oldX, oldY, x, y);
             if (result) {
-                if (canBeQueen(y, figure)) {
-                    setFigure(x, y, new Queen(figure.getColor()));
-                    getFigure(x, y).setClicked();
-                    setFigure(oldX, oldY, new None());
-                } else {
-                    setFigure(x, y, figure);
-                    setFigure(oldX, oldY, new None());
-                }
+                makeQueen(oldX, oldY, x, y, figure);
                 removeFigureBefore(oldX, oldY, x, y);
             }
         }
         return result;
+    }
+
+    private void makeQueen(int oldX, int oldY, int x, int y, Figure figure) {
+        if (canBeQueen(y, figure)) {
+            setFigure(x, y, new Queen(figure.getColor()));
+            getFigure(x, y).setClicked();
+        } else {
+            setFigure(x, y, figure);
+        }
+        setFigure(oldX, oldY, new None());
     }
 
     private boolean canBeQueen(int y, Figure figure) {
@@ -171,14 +167,6 @@ public class Board {
             return isQueenMoveProper(oldX, oldY, x, y);
         }
     }
-
-    /*private boolean isCommonMoveValid(int oldX, int oldY, int x, int y) {
-        boolean result = true;
-        result = result && emptyTargetField(x, y);
-        result = result && goodDirection(oldX, oldY, y);
-        result = result && isMoveDiagonal(oldX, oldY, x, y);
-        return result;
-    }*/
 
     private boolean isQueenMoveProper(int oldX, int oldY, int x, int y) {
         boolean result = isMoveDiagonal(oldX, oldY, x, y);

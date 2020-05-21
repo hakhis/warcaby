@@ -5,7 +5,8 @@ import javafx.scene.image.Image;
 public class Pawn implements Figure{
     private Image whitePawn = new Image("whitepawn.png");
     private Image blackPawn = new Image("blackpawn.png");
-    private Image highLight = new Image("highlighted_placeholder.png");
+    private Image highLightWhitePawn = new Image("highlightedWhitePawn.png");
+    private Image highLightBlackPawn = new Image("highlightedBlackPawn.png");
 
     private FigureColor color;
     private boolean clicked;
@@ -22,12 +23,14 @@ public class Pawn implements Figure{
 
     @Override
     public Image getImage() {
-        if (clicked) {
-            return highLight;
-        } else if (color == FigureColor.BLACK) {
-            return blackPawn;
-        } else {
+        if (clicked && color == FigureColor.BLACK) {
+            return highLightBlackPawn;
+        } else if (clicked && color == FigureColor.WHITE) {
+            return highLightWhitePawn;
+        } else if (!clicked && color == FigureColor.WHITE) {
             return whitePawn;
+        } else {
+            return blackPawn;
         }
     }
     @Override
