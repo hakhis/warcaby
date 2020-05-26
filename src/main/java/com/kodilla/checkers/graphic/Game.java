@@ -12,6 +12,7 @@ public class Game {
     private final Board board;
     private final GridPane grid;
     private FigureColor turn;
+    public FigureColor winner;
     private int oldX = - 1;
     private int oldY = - 1;
 
@@ -55,6 +56,7 @@ public class Game {
         }
         System.out.println("column: " + x + ", row " + y);
         display();
+        winner = board.isGameFinished();
     }
 
     private void switchTurn() {

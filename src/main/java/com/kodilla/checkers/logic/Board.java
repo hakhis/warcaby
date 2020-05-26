@@ -55,6 +55,28 @@ public class Board {
         setFigure(6, 7, new Pawn(FigureColor.WHITE));
     }
 
+    public FigureColor isGameFinished() {
+        int whiteCounter = 0;
+        int blackCounter = 0;
+        for (int col = 0; col < 8; col++) {
+            for (int row = 0; row < 8; row++) {
+                if (getFigure(col, row).getColor() == FigureColor.BLACK) {
+                    blackCounter++;
+                }
+                if (getFigure(col, row).getColor() == FigureColor.WHITE) {
+                    whiteCounter++;
+                }
+            }
+        }
+        if (whiteCounter != 0 && blackCounter != 0) {
+            return FigureColor.NONE;
+        } else if (whiteCounter == 0) {
+            return FigureColor.BLACK;
+        } else {
+            return FigureColor.WHITE;
+        }
+    }
+
     public void init() {
         //black rows
         for (int nrow = 0; nrow < 2; nrow++) {
@@ -71,10 +93,10 @@ public class Board {
     }
 
     public void setTest() {
-        setFigure(3, 6, new Pawn(FigureColor.BLACK));
-        setFigure(5, 6, new Pawn(FigureColor.BLACK));
-        setFigure(2, 1, new Pawn(FigureColor.WHITE));
-        setFigure(4, 1, new Pawn(FigureColor.WHITE));
+        setFigure(3, 4, new Pawn(FigureColor.BLACK));
+        //setFigure(5, 4, new Pawn(FigureColor.BLACK));
+        setFigure(2, 5, new Pawn(FigureColor.WHITE));
+        //setFigure(4, 5, new Pawn(FigureColor.WHITE));
     }
 
     public boolean move(int oldX, int oldY, int x, int y) {

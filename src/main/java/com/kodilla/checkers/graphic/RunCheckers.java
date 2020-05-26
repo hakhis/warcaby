@@ -1,20 +1,19 @@
 package com.kodilla.checkers.graphic;
 
 import com.kodilla.checkers.logic.Board;
+import com.kodilla.checkers.logic.FigureColor;
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class RunCheckers extends Application {
     private Image board = new Image("board2.png");
-
-
-    private FlowPane pawns = new FlowPane(Orientation.HORIZONTAL);
 
     public static void main(String[] args) {
         launch(args);
@@ -81,10 +80,21 @@ public class RunCheckers extends Application {
             for (int n = 0; n < 8; n++) {
                 if (y > boardCorner + n * fieldWidth && y <= boardCorner + (n + 1) * fieldWidth) row = n;
             }
-
             game.doClick(col, row);
-            game.display();
+            gameOver(stage, game);
         });
         stage.show();
+    }
+
+    private void gameOver(Stage stage, Game game) {
+        if (game.winner != FigureColor.NONE) {
+            System.out.println("Player " + game.winner + " has won the game!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Player " + game.winner + " has won the game!");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    stage.close();
+                }
+            });
+        }
     }
 }
